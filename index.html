@@ -175,7 +175,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这是第一篇blog-1</p>
+        <h3 id="react初解"><a href="#react初解" class="headerlink" title="react初解"></a>react初解</h3><h4 id="react中dom的挂载方式（与vue对比）"><a href="#react中dom的挂载方式（与vue对比）" class="headerlink" title="react中dom的挂载方式（与vue对比）"></a>react中dom的挂载方式（与vue对比）</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">&#x27;root&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>vue中是这么挂载的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;).$mount(<span class="string">&#x27;app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>vue中直接进行<code>new vue</code>，而在react中需要引入<code>ReactDom</code>进行dom的挂载</p>
+</blockquote>
+<h4 id="react中组件的书写方式"><a href="#react中组件的书写方式" class="headerlink" title="react中组件的书写方式"></a>react中组件的书写方式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Components</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        ...jsx...</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App</span><br></pre></td></tr></table></figure>
+
+<p>而在vue中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;&lt;/template&gt;</span><br><span class="line">&lt;script&gt;&lt;/script&gt;</span><br><span class="line">&lt;style&gt;&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="react中this的数据"><a href="#react中this的数据" class="headerlink" title="react中this的数据"></a>react中this的数据</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Components</span> </span>&#123;</span><br><span class="line">  state= &#123;</span><br><span class="line">    <span class="comment">// 将数据写在这里</span></span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        ...jsx...</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App</span><br></pre></td></tr></table></figure>
+
+<p>而在vue中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">        data() &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                <span class="comment">// 将数据写在这里</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;style&gt;&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在vue中，导出的组件是相同的，所以如果想要实现数据隔离，就只能将data作为一个方法，这样才能返回不同的实例。而在react中，导出的组件是基于class的jsx代码块，所以不需要使用方法对数据进行隔离。这也是vue与react不同的地方。</p>
+</blockquote>
+<h4 id="组件内模版"><a href="#组件内模版" class="headerlink" title="组件内模版"></a>组件内模版</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Table characterData=&#123;characters&#125; removeCharacter=&#123;<span class="built_in">this</span>.removeCharacter&#125;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>而同时，可以看到react中的props与vue中不同的地方，在vue中，如果需要进行props的传递，则需要使用v-bind进行props的传递，同时也不需要使用花括号“保护”起来如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Table v-bind:characterData=<span class="string">&quot;characters&quot;</span> v-on:removeCharacter=<span class="string">&quot;removeCharacter&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>除此以外，如果想让自组件能够emit父组件内的方法，两者的写法也有所差异，一个使用与props传递相同的写法，一个则使用v-on关键词进行处理</p>
+</blockquote>
+<h4 id="更改组件内的数据"><a href="#更改组件内的数据" class="headerlink" title="更改组件内的数据"></a>更改组件内的数据</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.setState(&#123;</span><br><span class="line">        characters: [...this.state.characters, character]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>而在vue中可以直接进行修改</p>
+<p>另外：react中的方法及数据本身是放在class内，与render同级的位置。而在vue中数据是放在data中， 而方法则是放在methods中。</p>
+<p>除此以外，还有react的生命周期，下次再学。</p>
 
       
 
