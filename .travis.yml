@@ -1,6 +1,5 @@
 language: node_js
 sudo: required
-// travis.yml
 before_install:
   - chmod +x mvnw
 node_js:
