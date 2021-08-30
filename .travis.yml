@@ -1,7 +1,7 @@
 language: node_js
 sudo: required
 before_install:
-  - chmod +x mvnw
+  - chmod +x ./deploy.sh
 node_js:
   - "lts/*"
 cache:
