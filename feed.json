@@ -1,0 +1,113 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Sean",
+  "home_page_url": "https://vuepress-theme-hope-demo.mrhope.site/blog/",
+  "feed_url": "https://vuepress-theme-hope-demo.mrhope.site/blog/feed.json",
+  "description": "A demo for vuepress-theme-hope",
+  "author": {
+    "name": "Sean"
+  },
+  "items": [
+    {
+      "title": "算法",
+      "url": "https://vuepress-theme-hope-demo.mrhope.site/blog/algorithmhome/",
+      "id": "https://vuepress-theme-hope-demo.mrhope.site/blog/algorithmhome/",
+      "content_html": "",
+      "date_published": "2021-08-30T15:03:52.000Z",
+      "date_modified": "2021-08-30T15:03:52.000Z",
+      "authors": [
+        {
+          "name": "Sean"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "title": "项目主页",
+      "url": "https://vuepress-theme-hope-demo.mrhope.site/blog/home/",
+      "id": "https://vuepress-theme-hope-demo.mrhope.site/blog/home/",
+      "content_html": "",
+      "date_published": "2021-08-30T15:03:52.000Z",
+      "date_modified": "2021-08-30T15:03:52.000Z",
+      "authors": [
+        {
+          "name": "Sean"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "title": "自定义布局",
+      "url": "https://vuepress-theme-hope-demo.mrhope.site/blog/layout/",
+      "id": "https://vuepress-theme-hope-demo.mrhope.site/blog/layout/",
+      "content_html": "<p>您可以使用带有 Markdown 支持的插槽来自定义页面布局。</p>\n<div><p>注意</p>\n<p>此处仅仅是一个演示，你应该自行根据需求添加样式。</p>\n\n\n</div>\n<template #page-top><p>页面顶部内容</p>\n</template><template #page-bottom><p>页面底部内容</p>\n</template><template #content-top><p>内容顶部内容</p>\n</template><template #content-bottom><p>内容底部内容</p>\n</template><template #navbar-start><p>导航栏起始内容</p>\n</template><template #navbar-center><p>导航栏中部内容</p>\n</template><template #navbar-end><p>导航栏末尾内容</p>\n</template><template #sidebar-top><p>侧边栏顶部内容</p>\n</template><template #sidebar-center><p>侧边栏中部内容</p>\n</template><template #sidebar-bottom><p>侧边栏底部内容</p>\n</template>",
+      "date_published": "2021-08-30T15:03:52.000Z",
+      "date_modified": "2021-08-30T15:03:52.000Z",
+      "authors": [
+        {
+          "name": "Sean"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "title": "项目主页",
+      "url": "https://vuepress-theme-hope-demo.mrhope.site/blog/other-home/",
+      "id": "https://vuepress-theme-hope-demo.mrhope.site/blog/other-home/",
+      "content_html": "",
+      "date_published": "2021-08-30T15:03:52.000Z",
+      "date_modified": "2021-08-30T15:03:52.000Z",
+      "authors": [
+        {
+          "name": "Sean"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "title": "函数柯里化",
+      "url": "https://vuepress-theme-hope-demo.mrhope.site/blog/post/curry/",
+      "id": "https://vuepress-theme-hope-demo.mrhope.site/blog/post/curry/",
+      "content_html": "<h2 id=\"on-the-first\"> On the first</h2>\n<p>之前在面经中看到过函数柯里化，但是在自己的面试过程中也没有遇到过，但是最近又准备看新的机会，所以又开始关注起这个问题，顺便写一篇文章记录一下</p>\n<h2 id=\"函数柯里化\"> 函数柯里化</h2>\n<h4 id=\"柯里化到底是什么\"> 柯里化到底是什么？</h4>\n<p>我一直没有找到一个完整的解释，直到看到这里 <a href=\"https://stackoverflow.com/questions/36314/what-is-currying\" target=\"_blank\" rel=\"noopener noreferrer\">What is currying</a></p>\n<blockquote>\n<p>柯里化就是将一个拥有多个参数的 <strong>方法</strong> 拆解为一系列 <strong>单个参数</strong> 的方法</p>\n</blockquote>\n<p>所以重点在这里。</p>\n<ul>\n<li>\n<p>多个参数的方法</p>\n</li>\n<li>\n<p>单个参数</p>\n</li>\n</ul>\n<h4 id=\"eg\"> .eg</h4>\n<p>有了这个定义以后，我们尝试定义一个多个参数的方法</p>\n<div><pre><code><span>function</span> <span>add</span><span>(</span><span>a<span>,</span> b</span><span>)</span> <span>{</span>\n    <span>return</span> a <span>+</span> b\n<span>}</span>\n</code></pre>\n<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><p>看到了吗？与其他的<code>currying</code>化的示例简直一模一样，那么接下来呢？</p>\n<p>先说一下我们对于柯里化的预期</p>\n<p>我们期望能够将 <code>add(a, b)</code> 能够转换为 <code>add(a)(b)</code>，也就是说，当传入第一个参数时，即：</p>\n<p><code>add(a)</code></p>\n<p>我们期望他能够返回一个function，使得<code>add(a)(b)</code>能够成功被调用</p>\n<p>所以，我们把这个方法拆解为一系列接受单个参数的方法</p>\n<div><pre><code><span>// 硬编码柯里化</span>\n<span>function</span> <span>add</span><span>(</span><span>a</span><span>)</span> <span>{</span>\n    <span>return</span> <span>function</span><span>(</span><span>b</span><span>)</span> <span>{</span>\n        <span>return</span> a <span>+</span> b\n    <span>}</span>\n<span>}</span>\n</code></pre>\n<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br></div></div><p>这样，就完成了一个函数的<strong>柯里化</strong></p>\n<p>但是这样的话，我们每次想要柯里化一个函数都需要重写这个方法，这也太麻烦了，且修改原函数的定义，可能会导致未知的问题，所以我们需要一个通用的方法，能够返回新的function</p>\n<h2 id=\"柯里化function\"> 柯里化function</h2>\n<p>沿用刚刚的<strong>硬编码柯里化</strong>方案，我们继续考虑如何更灵活的调用</p>\n<p>既然重写方法如此麻烦，那不如将方法传入一个新定义的方法（currying）内，使其成为currying的参数。</p>\n<div><pre><code><span>function</span> <span>currying</span><span>(</span><span>fn</span><span>)</span> <span>{</span>\n    <span>return</span> something\n<span>}</span>\n</code></pre>\n<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><p>我们所期望的是，传入待柯里化的function，返回一个新的方法，可以让我们直接连续调用</p>\n<p>期望的用法如下</p>\n<div><pre><code><span>let</span> curryingAdd <span>=</span> <span>currying</span><span>(</span>add<span>)</span>\n\n<span>curryingAdd</span><span>(</span>a<span>)</span><span>(</span>b<span>)</span>\n</code></pre>\n<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><p>但是却存在一个问题：</p>\n<p>何时返回add方法的值呢？很简单</p>\n<h4 id=\"参数个数大于等于add所需的参数\"> 参数个数大于等于add所需的参数</h4>\n<p>当柯里化后的方法（curryingAdd）所接收的值的个数，大于等于add所接收的个数时，就返回计算值</p>\n<p>但是如何返回计算值呢？那我们可以保存所有传入的参数和原函数（add），当条件达到时，则调用函数（add）并传入所有的值</p>\n<p>那我们可以将代码按照如下改造</p>\n<blockquote>\n<p>前置知识：function拥有一个length属性，为定义改方法时的参数个数</p>\n</blockquote>\n<div><pre><code><span>function</span> <span>currying</span><span>(</span><span>fn<span>,</span> <span>...</span>args</span><span>)</span> <span>{</span>\n    <span>let</span> len <span>=</span> fn<span>.</span>length\n    \n    <span>if</span> <span>(</span>args<span>.</span>length <span>>=</span> len<span>)</span><span>{</span>\n        <span>// 返回计算值</span>\n        <span>return</span> <span>fn</span><span>.</span><span>call</span><span>(</span><span>null</span><span>,</span> <span>...</span>args<span>)</span>\n    <span>}</span> <span>else</span> <span>{</span>\n        <span>// 保存args</span>\n    <span>}</span>\n<span>}</span>\n</code></pre>\n<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br></div></div><h4 id=\"情况相反\"> 情况相反</h4>\n<p>如果情况相反，传入的参数不足以调用add，理论上的期望继续调用的路径是</p>\n<div><pre><code><span>let</span> curryingAdd_a <span>=</span> <span>curryingAdd</span><span>(</span>a<span>)</span>\n\n<span>curryingAdd_a</span><span>(</span>b<span>)</span>\n</code></pre>\n<div><span>1</span><br><span>2</span><br><span>3</span><br></div></div><p>所以在这种情况下，应该返回一个function</p>\n<p>在这个function调用时，应该继续检测是否满足参数的个数是否大于fn的个数，这和currying方法的功能一致，所以我们继续递归调用currying</p>\n<div><pre><code><span>function</span> <span>currying</span><span>(</span><span>fn<span>,</span> <span>...</span>args</span><span>)</span> <span>{</span>\n    <span>let</span> len <span>=</span> fn<span>.</span>length\n    \n    <span>if</span> <span>(</span>args<span>.</span>length <span>>=</span> len<span>)</span><span>{</span>\n        <span>// 返回计算值</span>\n        <span>return</span> <span>fn</span><span>.</span><span>call</span><span>(</span><span>null</span><span>,</span> <span>...</span>args<span>)</span>\n    <span>}</span> <span>else</span> <span>{</span>\n        <span>return</span> <span>function</span> <span>curried</span><span>(</span><span><span>...</span>args2</span><span>)</span> <span>{</span>\n            <span>return</span> <span>currying</span><span>(</span>fn<span>,</span> <span>...</span><span>[</span><span>...</span>args<span>,</span> <span>...</span>args2<span>]</span><span>)</span>\n        <span>}</span>\n    <span>}</span>\n<span>}</span>\n</code></pre>\n<div><span>1</span><br><span>2</span><br><span>3</span><br><span>4</span><br><span>5</span><br><span>6</span><br><span>7</span><br><span>8</span><br><span>9</span><br><span>10</span><br><span>11</span><br><span>12</span><br></div></div><p>那这样，就解决了柯里化硬编码的问题</p>\n<h2 id=\"in-the-end\"> In the end</h2>\n<p>柯里化函数是保存状态并且返回一个仍然可以调用的方法的函数</p>\n",
+      "date_published": "2021-05-20T00:00:00.000Z",
+      "date_modified": "2021-08-30T15:03:52.000Z",
+      "authors": [
+        {
+          "name": "Sean"
+        }
+      ],
+      "tags": [
+        "Javascript"
+      ]
+    },
+    {
+      "title": "博客主页",
+      "url": "https://vuepress-theme-hope-demo.mrhope.site/blog/",
+      "id": "https://vuepress-theme-hope-demo.mrhope.site/blog/",
+      "content_html": "",
+      "date_published": "2021-08-30T15:03:52.000Z",
+      "date_modified": "2021-08-30T15:03:52.000Z",
+      "authors": [
+        {
+          "name": "Sean"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "title": "幻灯片页",
+      "url": "https://vuepress-theme-hope-demo.mrhope.site/blog/slides/",
+      "id": "https://vuepress-theme-hope-demo.mrhope.site/blog/slides/",
+      "content_html": "\n<i>Not supported content</i>",
+      "image": "https://vuepress-theme-hope-demo.mrhope.site/blog/logo.svg",
+      "date_published": "2021-08-30T15:03:52.000Z",
+      "date_modified": "2021-08-30T15:03:52.000Z",
+      "authors": [
+        {
+          "name": "Sean"
+        }
+      ],
+      "tags": []
+    }
+  ]
+}
